@@ -1,23 +1,29 @@
 import React from "react";
 import Form from "./common/form";
+import Joi from "joi-browser";
 
 class WeightForm extends Form {
   state = {
-    data: { id: 0 },
+    data: { id: 0, date: "" },
+    errors: {},
+  };
+
+  schema = {
+    id: Joi.number(),
+    date: Joi.date().required().label("Date"),
+    weight: Joi.number().required().label("Weight"),
   };
 
   doSubmit = () => {
-    let weight = localStorage.getItem("weight");
+    let weight = localStorage.getItem("data");
     weight = weight ? JSON.parse(weight) : [];
     this.state.data.weight = this.state.data.weight + " Kg";
     const weightId = this.props.match.params.id;
-    console.log(weightId);
     if (weightId == "add") {
       this.state.data.id = weight.length;
-      console.log("here");
       weight.push(this.state.data);
       this.state.data.id++;
-      localStorage.setItem("weight", JSON.stringify(weight));
+      localStorage.setItem("data", JSON.stringify(weight));
       this.props.history.push("/weight");
       window.location.reload(false);
     } else {
@@ -27,7 +33,7 @@ class WeightForm extends Form {
           break;
         }
       }
-      localStorage.setItem("weight", JSON.stringify(weight));
+      localStorage.setItem("data", JSON.stringify(weight));
       this.props.history.push("/weight");
       window.location.reload(false);
     }
@@ -37,7 +43,7 @@ class WeightForm extends Form {
     try {
       const weightId = this.props.match.params.id;
       if (weightId === "new") return;
-      let weight = localStorage.getItem("weight");
+      let weight = localStorage.getItem("data");
       weight = weight ? JSON.parse(weight) : [];
 
       for (var obj in weight) {

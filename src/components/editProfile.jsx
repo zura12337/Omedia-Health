@@ -26,22 +26,22 @@ class EditProfile extends Form {
           {this.renderInput("name", "Name", undefined, user.name)}
           {this.renderInput("email", "Email", undefined, user.email)}
           {this.renderInput(
-            "desired-weight",
+            "desiredWeight",
             "Desired Weight",
             "number",
-            user["desired-weight"]
+            user["desiredWeight"]
           )}
           {this.renderInput(
-            "desired-meal-calories",
+            "desiredMealCalories",
             "Desired Meal Calories",
             "number",
-            user["desired-meal-calories"]
+            user["desiredMealCalories"]
           )}
           {this.renderInput(
-            "desired-activity-calories",
+            "desiredActivityCalories",
             "Desired Activity Calories",
             "number",
-            user["desired-activity-calories"]
+            user["desiredActivityCalories"]
           )}
           {this.renderButton("Submit Changes")}
         </form>

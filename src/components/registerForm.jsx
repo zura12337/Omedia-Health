@@ -1,13 +1,25 @@
 import React, { Component } from "react";
 import Form from "./common/form";
+import Joi from "joi-browser";
 
 class RegisterForm extends Form {
-  state = {};
+  state = { data: {}, errors: {} };
 
   doSubmit = () => {
     localStorage.setItem("user", JSON.stringify(this.state.data));
     this.props.history.push("/dashboard");
     window.location.reload(false);
+  };
+
+  schema = {
+    name: Joi.string().required().label("Name"),
+    email: Joi.string().required().email().label("Email"),
+    desiredWeight: Joi.number().required().label("Desired Weight"),
+    desiredMealCalories: Joi.number().required().label("Desired Meal Calories"),
+    desiredActivityCalories: Joi.number()
+      .required()
+      .label("Desired Activity Calories"),
+    password: Joi.string().required().label("Password"),
   };
 
   render() {
@@ -18,14 +30,14 @@ class RegisterForm extends Form {
           {this.renderInput("name", "Name")}
           {this.renderInput("email", "Email")}
           <div className="form-row m-1">
-            {this.renderInput("desired-weight", "Desired Weight", "number")}
+            {this.renderInput("desiredWeight", "Desired Weight", "number")}
             {this.renderInput(
-              "desired-meal-calories",
+              "desiredMealCalories",
               "Desired Meal Calories",
               "number"
             )}
             {this.renderInput(
-              "desired-activity-calories",
+              "desiredActivityCalories",
               "Desired Activity Calories",
               "number"
             )}

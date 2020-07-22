@@ -1,29 +1,46 @@
 import React, { Component } from "react";
 import Table from "./common/table";
-import { Link } from "react-router-dom";
-import weightService from "../services/weightService";
+import authService from "../services/authService";
 
 class WeightForm extends Component {
   columns = [
     {
       path: "date",
       label: "Date (YYYY-MM-DD)",
-      content: (weight) => (
-        <Link to={`/weight/${weight.id}`}>{weight.date}</Link>
-      ),
     },
     { path: "weight", label: "Weight" },
   ];
 
+  editColumn = {
+    key: "edit",
+    content: (weight) => (
+      <button
+        onClick={() => this.handleEdit(weight)}
+        className="btn btn-primary btn-sm"
+      >
+        Edit
+      </button>
+    ),
+  };
+
+  handleEdit = (weight) => {
+    this.props.handleEdit(weight);
+  };
+
+  constructor() {
+    super();
+    const user = authService();
+    if (user) this.columns.push(this.editColumn);
+  }
+
   render() {
-    const data = weightService();
+    const { data } = this.props;
     return (
       <>
         <Table
           columns={this.columns}
-          label={"Weight"}
           data={data}
-          name="desired-weight"
+          name="desiredWeight"
           dimension="weight"
         />
       </>
