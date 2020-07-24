@@ -1,10 +1,10 @@
 import React from "react";
 import Form from "./common/form";
 import authService from "../services/authService";
+import Joi from "joi-browser";
 
 class EditProfile extends Form {
-  state = { data: {} };
-
+  state = { data: {}, errors: {} };
   componentDidMount() {
     const user = authService();
     this.setState({ data: user });
@@ -14,6 +14,17 @@ class EditProfile extends Form {
     localStorage.setItem("user", JSON.stringify(this.state.data));
     this.props.history.push("/profile");
     window.location.reload(false);
+  };
+
+  schema = {
+    name: Joi.string().required().label("Name"),
+    email: Joi.string().required().email().label("Email"),
+    desiredWeight: Joi.number().required().label("Desired Weight"),
+    desiredMealCalories: Joi.number().required().label("Desired Meal Calories"),
+    desiredActivityCalories: Joi.number()
+      .required()
+      .label("Desired Activity Calories"),
+    password: Joi.string(),
   };
 
   render() {
@@ -26,22 +37,22 @@ class EditProfile extends Form {
           {this.renderInput("name", "Name", undefined, user.name)}
           {this.renderInput("email", "Email", undefined, user.email)}
           {this.renderInput(
-            "desired-weight",
+            "desiredWeight",
             "Desired Weight",
             "number",
-            user["desired-weight"]
+            user["desiredWeight"]
           )}
           {this.renderInput(
-            "desired-meal-calories",
+            "desiredMealCalories",
             "Desired Meal Calories",
             "number",
-            user["desired-meal-calories"]
+            user["desiredMealCalories"]
           )}
           {this.renderInput(
-            "desired-activity-calories",
+            "desiredActivityCalories",
             "Desired Activity Calories",
             "number",
-            user["desired-activity-calories"]
+            user["desiredActivityCalories"]
           )}
           {this.renderButton("Submit Changes")}
         </form>

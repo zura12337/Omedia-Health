@@ -2,24 +2,25 @@ import React, { Component } from "react";
 import Table from "./common/table";
 import authService from "../services/authService";
 
-class MealTable extends Component {
+class ActivityTable extends Component {
   columns = [
     {
-      path: "name",
-      label: "Name",
+      path: "activityType",
+      label: "Type",
     },
     {
       path: "date",
       label: "Date (YYYY-MM-DD)",
     },
-    { path: "mealCalories", label: "Calories" },
+    { path: "distance", label: "Distance" },
+    { path: "activityCalories", label: "Calories" },
   ];
 
   editColumn = {
     key: "edit",
-    content: (meal) => (
+    content: (activity) => (
       <button
-        onClick={() => this.handleEdit(meal)}
+        onClick={() => this.handleEdit(activity)}
         className="btn btn-primary btn-sm"
       >
         Edit
@@ -27,8 +28,8 @@ class MealTable extends Component {
     ),
   };
 
-  handleEdit = (meal) => {
-    this.props.handleEdit(meal);
+  handleEdit = (activity) => {
+    this.props.handleEdit(activity);
   };
   constructor() {
     super();
@@ -36,18 +37,17 @@ class MealTable extends Component {
     if (user) this.columns.push(this.editColumn);
   }
   render() {
-    const { data } = this.props;
+    const { data, sortColumn, onSort } = this.props;
     return (
       <>
         <Table
           columns={this.columns}
           data={data}
-          name="desiredMealCalories"
-          dimension="mealCalories"
+          name="desiredActivityCalories"
         />
       </>
     );
   }
 }
 
-export default MealTable;
+export default ActivityTable;

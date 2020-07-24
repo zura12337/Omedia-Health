@@ -1,11 +1,17 @@
 import React from "react";
 import Form from "./common/form";
+import Joi from "joi-browser";
 
 class LoginForm extends Form {
-  state = {};
+  state = { data: {}, errors: {} };
 
   doSubmit = () => {
     console.log("Login Failed");
+  };
+
+  schema = {
+    email: Joi.string().email().required().label("Email"),
+    password: Joi.string().required().label("Password"),
   };
 
   render() {

@@ -1,9 +1,17 @@
 import React from "react";
 import Form from "./common/form";
+import Joi from "joi-browser";
 
 class WeightForm extends Form {
   state = {
-    data: { id: 0 },
+    data: { id: 0, date: "" },
+    errors: {},
+  };
+
+  schema = {
+    id: Joi.number(),
+    date: Joi.date().required().label("Date"),
+    weight: Joi.number().required().label("Weight"),
   };
 
   doSubmit = () => {
@@ -11,10 +19,8 @@ class WeightForm extends Form {
     weight = weight ? JSON.parse(weight) : [];
     this.state.data.weight = this.state.data.weight + " Kg";
     const weightId = this.props.match.params.id;
-    console.log(weightId);
     if (weightId == "add") {
       this.state.data.id = weight.length;
-      console.log("here");
       weight.push(this.state.data);
       this.state.data.id++;
       localStorage.setItem("weight", JSON.stringify(weight));
