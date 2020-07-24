@@ -4,7 +4,7 @@ import TableBody from "./tableBody";
 
 const Table = ({ columns, label, data, name, dimension }) => {
   return (
-    <div className="mt-5">
+    <div className="mt-2">
       <table className="table mt-4">
         <thead>
           <tr>

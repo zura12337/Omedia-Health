@@ -1,0 +1,73 @@
+$light-red: #ff5959;
+$dark-red: #a53737;
+$cyan: #399791;
+$dark-blue: #085f63;
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+// FORM CONTROL
+
+.form-control {
+  border-radius: 15px;
+  padding-left: 20px;
+}
+.form-control:focus {
+  box-shadow: 0 0 0 4px rgba($light-red, 0.5);
+  border: 1px solid $light-red;
+}
+
+.form-control-label {
+  font-size: 14px;
+  font-weight: 500 !important;
+  margin-left: 5px;
+}
+
+.error {
+  font-family: "Montserrat";
+  font-weight: 700 !important;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.btn-primary {
+  border-radius: 15px;
+  padding: 10px 50px;
+  background-color: $cyan;
+  border: 1px solid $dark-blue;
+}
+.btn-primary:hover {
+  background-color: $dark-blue;
+  border: 1px solid $dark-blue;
+}
+.btn-primary:focus {
+  background-color: $dark-blue;
+  border: 1px solid $dark-blue;
+  box-shadow: 0;
+}
+
+.btn-primary:active {
+  background-color: $dark-blue !important;
+  border: 1px solid $dark-blue !important;
+}
+
+.btn-logout {
+  border-radius: 15px;
+  padding: 10px 50px;
+  background-color: $light-red;
+  border: 1px solid $dark-red;
+}
+.btn-logout:hover {
+  background-color: $dark-red;
+  border: 1px solid $dark-red;
+}
+.btn-logout:focus {
+  background-color: $dark-red;
+  border: 1px solid $dark-red;
+  box-shadow: 0;
+}
+.btn-logout:active {
+  background-color: $dark-red !important;
+  border: 1px solid $dark-red !important;
+}

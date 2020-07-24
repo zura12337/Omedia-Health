@@ -16,7 +16,7 @@ class MealForm extends Form {
   };
 
   doSubmit = () => {
-    let meal = localStorage.getItem("data");
+    let meal = localStorage.getItem("meal");
     meal = meal ? JSON.parse(meal) : [];
     this.state.data.id = meal.length;
     const mealId = this.props.match.params.id;
@@ -25,7 +25,7 @@ class MealForm extends Form {
       meal.push(this.state.data);
 
       this.state.data.id++;
-      localStorage.setItem("data", JSON.stringify(meal));
+      localStorage.setItem("meal", JSON.stringify(meal));
       this.props.history.push("/meal");
       window.location.reload(false);
     } else {
@@ -35,7 +35,7 @@ class MealForm extends Form {
           break;
         }
       }
-      localStorage.setItem("data", JSON.stringify(meal));
+      localStorage.setItem("meal", JSON.stringify(meal));
       this.props.history.push("/meal");
       window.location.reload(false);
     }
@@ -45,7 +45,7 @@ class MealForm extends Form {
     try {
       const mealId = this.props.match.params.id;
       if (mealId === "add") return;
-      let meal = localStorage.getItem("data");
+      let meal = localStorage.getItem("meal");
       meal = meal ? JSON.parse(meal) : [];
 
       for (var obj in meal) {

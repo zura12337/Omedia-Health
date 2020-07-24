@@ -22,7 +22,7 @@ class ActivityForm extends Form {
   ];
 
   doSubmit = () => {
-    let activity = localStorage.getItem("data");
+    let activity = localStorage.getItem("activity");
     activity = activity ? JSON.parse(activity) : [];
     this.state.data.id = activity.length;
 
@@ -37,7 +37,7 @@ class ActivityForm extends Form {
         this.state.data.activityCalories = this.state.data.distance * 300;
       }
       this.state.data.id++;
-      localStorage.setItem("data", JSON.stringify(activity));
+      localStorage.setItem("activity", JSON.stringify(activity));
       this.props.history.push("/activity");
       window.location.reload(false);
     } else {
@@ -54,7 +54,7 @@ class ActivityForm extends Form {
       } else {
         this.state.data.activityCalories = this.state.data.distance * 300;
       }
-      localStorage.setItem("data", JSON.stringify(activity));
+      localStorage.setItem("activity", JSON.stringify(activity));
 
       this.props.history.push("/activity");
       window.location.reload(false);
@@ -65,7 +65,7 @@ class ActivityForm extends Form {
     try {
       const activityId = this.props.match.params.id;
       if (activityId === "add") return;
-      let activity = localStorage.getItem("data");
+      let activity = localStorage.getItem("activity");
       activity = activity ? JSON.parse(activity) : [];
 
       for (var obj in activity) {

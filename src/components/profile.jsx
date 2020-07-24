@@ -29,7 +29,7 @@ class Profile extends Component {
         <NavLink className="btn btn-primary ml-5 m-2" to="/profile/edit">
           Edit Profile
         </NavLink>
-        <NavLink className="btn btn-danger m-2" to="/logout">
+        <NavLink className="btn btn-danger btn-logout m-2" to="/logout">
           Logout
         </NavLink>
       </>

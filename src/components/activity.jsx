@@ -36,7 +36,7 @@ class Activity extends Component {
     const { data: allActivity, selectedActivity } = this.state;
 
     let filtered = allActivity;
-    if (selectedActivity && selectedActivity.id) {
+    if (selectedActivity && selectedActivity.id && allActivity) {
       filtered = allActivity.filter(
         (a) => a.activityType === selectedActivity.name
       );

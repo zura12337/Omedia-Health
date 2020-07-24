@@ -1,10 +1,10 @@
 import React from "react";
 import Form from "./common/form";
 import authService from "../services/authService";
+import Joi from "joi-browser";
 
 class EditProfile extends Form {
-  state = { data: {} };
-
+  state = { data: {}, errors: {} };
   componentDidMount() {
     const user = authService();
     this.setState({ data: user });
@@ -14,6 +14,17 @@ class EditProfile extends Form {
     localStorage.setItem("user", JSON.stringify(this.state.data));
     this.props.history.push("/profile");
     window.location.reload(false);
+  };
+
+  schema = {
+    name: Joi.string().required().label("Name"),
+    email: Joi.string().required().email().label("Email"),
+    desiredWeight: Joi.number().required().label("Desired Weight"),
+    desiredMealCalories: Joi.number().required().label("Desired Meal Calories"),
+    desiredActivityCalories: Joi.number()
+      .required()
+      .label("Desired Activity Calories"),
+    password: Joi.string(),
   };
 
   render() {

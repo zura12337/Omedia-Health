@@ -1,0 +1,76 @@
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.form-control {
+  border-radius: 15px;
+  padding-left: 20px;
+}
+
+.form-control:focus {
+  -webkit-box-shadow: 0 0 0 4px rgba(255, 89, 89, 0.5);
+          box-shadow: 0 0 0 4px rgba(255, 89, 89, 0.5);
+  border: 1px solid #ff5959;
+}
+
+.form-control-label {
+  font-size: 14px;
+  font-weight: 500 !important;
+  margin-left: 5px;
+}
+
+.error {
+  font-family: "Montserrat";
+  font-weight: 700 !important;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.btn-primary {
+  border-radius: 15px;
+  padding: 10px 50px;
+  background-color: #399791;
+  border: 1px solid #085f63;
+}
+
+.btn-primary:hover {
+  background-color: #085f63;
+  border: 1px solid #085f63;
+}
+
+.btn-primary:focus {
+  background-color: #085f63;
+  border: 1px solid #085f63;
+  -webkit-box-shadow: 0;
+          box-shadow: 0;
+}
+
+.btn-primary:active {
+  background-color: #085f63 !important;
+  border: 1px solid #085f63 !important;
+}
+
+.btn-logout {
+  border-radius: 15px;
+  padding: 10px 50px;
+  background-color: #ff5959;
+  border: 1px solid #a53737;
+}
+
+.btn-logout:hover {
+  background-color: #a53737;
+  border: 1px solid #a53737;
+}
+
+.btn-logout:focus {
+  background-color: #a53737;
+  border: 1px solid #a53737;
+  -webkit-box-shadow: 0;
+          box-shadow: 0;
+}
+
+.btn-logout:active {
+  background-color: #a53737 !important;
+  border: 1px solid #a53737 !important;
+}
+/*# sourceMappingURL=App.css.map */

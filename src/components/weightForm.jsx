@@ -15,7 +15,7 @@ class WeightForm extends Form {
   };
 
   doSubmit = () => {
-    let weight = localStorage.getItem("data");
+    let weight = localStorage.getItem("weight");
     weight = weight ? JSON.parse(weight) : [];
     this.state.data.weight = this.state.data.weight + " Kg";
     const weightId = this.props.match.params.id;
@@ -23,7 +23,7 @@ class WeightForm extends Form {
       this.state.data.id = weight.length;
       weight.push(this.state.data);
       this.state.data.id++;
-      localStorage.setItem("data", JSON.stringify(weight));
+      localStorage.setItem("weight", JSON.stringify(weight));
       this.props.history.push("/weight");
       window.location.reload(false);
     } else {
@@ -33,7 +33,7 @@ class WeightForm extends Form {
           break;
         }
       }
-      localStorage.setItem("data", JSON.stringify(weight));
+      localStorage.setItem("weight", JSON.stringify(weight));
       this.props.history.push("/weight");
       window.location.reload(false);
     }
@@ -43,7 +43,7 @@ class WeightForm extends Form {
     try {
       const weightId = this.props.match.params.id;
       if (weightId === "new") return;
-      let weight = localStorage.getItem("data");
+      let weight = localStorage.getItem("weight");
       weight = weight ? JSON.parse(weight) : [];
 
       for (var obj in weight) {
