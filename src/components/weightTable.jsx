@@ -16,7 +16,7 @@ class WeightForm extends Component {
     content: (weight) => (
       <button
         onClick={() => this.handleEdit(weight)}
-        className="btn btn-primary btn-sm"
+        className="btn btn-primary btn-sm btn-edit"
       >
         Edit
       </button>

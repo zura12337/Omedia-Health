@@ -1,40 +1,20 @@
 import React, { Component } from "react";
 import Table from "./common/table";
 import authService from "../services/authService";
+import { Link } from "react-router-dom";
 
 class MealTable extends Component {
   columns = [
     {
-      path: "name",
-      label: "Name",
-    },
-    {
       path: "date",
       label: "Date (YYYY-MM-DD)",
+      content: (item) => (
+        <Link to={`/meal/details/${item.date}`}>{item.date}</Link>
+      ),
     },
-    { path: "mealCalories", label: "Calories" },
+    { path: "allMealCalories", label: "Calories" },
   ];
 
-  editColumn = {
-    key: "edit",
-    content: (meal) => (
-      <button
-        onClick={() => this.handleEdit(meal)}
-        className="btn btn-primary btn-sm"
-      >
-        Edit
-      </button>
-    ),
-  };
-
-  handleEdit = (meal) => {
-    this.props.handleEdit(meal);
-  };
-  constructor() {
-    super();
-    const user = authService();
-    if (user) this.columns.push(this.editColumn);
-  }
   render() {
     const { data } = this.props;
     return (
@@ -43,7 +23,7 @@ class MealTable extends Component {
           columns={this.columns}
           data={data}
           name="desiredMealCalories"
-          dimension="mealCalories"
+          dimension="allMealCalories"
         />
       </>
     );

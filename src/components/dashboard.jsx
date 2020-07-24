@@ -11,9 +11,9 @@ class Dashboard extends Component {
 
   columns = [
     { path: "date", label: "Date" },
-    { path: "meal", label: "Meal" },
-    { path: "activity", label: "Activity" },
     { path: "weight", label: "Weight" },
+    { path: "meal", label: "Meals" },
+    { path: "activity", label: "Activities" },
   ];
   renderCell = (item, column) => {
     if (column.content) return column.content(item);
@@ -32,7 +32,6 @@ class Dashboard extends Component {
 
     let dates = [];
     meal ? meal.map((item) => dates.push(item.date)) : (meal = []);
-
     activity ? activity.map((item) => dates.push(item.date)) : (activity = []);
     weight ? weight.map((item) => dates.push(item.date)) : (weight = []);
     let data = [...meal, ...activity, ...weight];
@@ -50,8 +49,18 @@ class Dashboard extends Component {
         }
       }
       for (var i = 0; i < meal.length; i++) {
-        if (meal[i].date === item.date) {
-          item.mealCalories = parseInt(meal[i].mealCalories);
+        item.allMeal = new Array();
+        for (var i = 0; i < meal.length; i++) {
+          if (meal[i].date === item.date) {
+            item.allMeal.push(meal[i].mealCalories);
+          }
+        }
+        item.allMealCalories = item.allMeal.reduce(
+          (a, b) => parseInt(a) + parseInt(b),
+          0
+        );
+        if (item.allMealCalories === 0) {
+          item.allMealCalories = null;
         }
       }
       for (var i = 0; i < activity.length; i++) {
@@ -89,23 +98,23 @@ class Dashboard extends Component {
                 result.map((item) => (
                   <tr scope="row">
                     <th>{item.date}</th>
-                    {user && user.desiredMealCalories >= item.mealCalories ? (
-                      <td className="text-success">{item.mealCalories}</td>
-                    ) : (
-                      <td className="text-danger">{item.mealCalories}</td>
-                    )}
-                    {user &&
-                    user.desiredActivityCalories <= item.activityCalories ? (
-                      <td className="text-success">{item.activityCalories}</td>
-                    ) : (
-                      <td className="text-danger">{item.activityCalories}</td>
-                    )}
                     {user &&
                     item.weight &&
                     user.desiredWeight >= parseInt(item.weight.slice(0, -2)) ? (
                       <td className="text-success">{item.weight}</td>
                     ) : (
                       <td className="text-danger">{item.weight}</td>
+                    )}
+                    {user && user.desiredMealCalories >= item.mealCalories ? (
+                      <td className="text-success">{item.allMealCalories}</td>
+                    ) : (
+                      <td className="text-danger">{item.allMealCalories}</td>
+                    )}
+                    {user &&
+                    user.desiredActivityCalories <= item.activityCalories ? (
+                      <td className="text-success">{item.activityCalories}</td>
+                    ) : (
+                      <td className="text-danger">{item.activityCalories}</td>
                     )}
                   </tr>
                 ))}

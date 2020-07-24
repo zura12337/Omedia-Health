@@ -4,7 +4,6 @@ import ListGroup from "./common/listGroup";
 import { NavLink } from "react-router-dom";
 import authService from "../services/authService";
 import activityService from "../services/activityService";
-import { act } from "react-dom/test-utils";
 
 class Activity extends Component {
   state = {
@@ -24,8 +23,35 @@ class Activity extends Component {
       { name: "Swimming", id: 2 },
       { name: "Hiking", id: 3 },
     ];
-    const data = activityService();
-    this.setState({ activityTypes, data });
+    let activity = activityService();
+    let dates = [];
+    let result = [];
+    activity ? activity.map((item) => dates.push(item.date)) : (activity = []);
+    dates = dates.filter((v, i) => dates.indexOf(v) === i);
+    dates.forEach((date) => {
+      result.push({ date });
+    });
+
+    result.forEach((item) => {
+      item.totalActivity = new Array();
+      item.totalDistance = new Array();
+      for (var i = 0; i < activity.length; i++) {
+        if (activity[i].date === item.date) {
+          item.totalDistance.push(activity[i].distance);
+          item.totalActivity.push(activity[i].activityCalories);
+        }
+      }
+      item.totalActivityCalories = item.totalActivity.reduce(
+        (a, b) => parseInt(a) + parseInt(b),
+        0
+      );
+      item.totalDistance = item.totalDistance.reduce(
+        (a, b) => parseInt(a) + parseInt(b),
+        0
+      );
+    });
+    console.log(result);
+    this.setState({ activityTypes, data: result });
   }
 
   doEdit = (activity) => {
@@ -46,16 +72,15 @@ class Activity extends Component {
   render() {
     const user = authService();
     const { data } = this.getPageData();
-    console.log(data);
     return (
       <div className="row">
-        <div className="col-3 mt-5">
+        {/* <div className="col-3 mt-5">
           <ListGroup
             items={this.state.activityTypes}
             selectedItem={this.state.selectedActivity}
             onItemSelect={this.handleActivitySelect}
           />
-        </div>
+        </div> */}
         <div className="col">
           {user && (
             <NavLink className="btn btn-primary mt-5" to={`activity/add`}>

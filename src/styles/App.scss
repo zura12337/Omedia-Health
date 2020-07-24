@@ -2,6 +2,8 @@ $light-red: #ff5959;
 $dark-red: #a53737;
 $cyan: #399791;
 $dark-blue: #085f63;
+$danger-color: #ff5d56;
+$success-color: #45e884;
 
 body {
   font-family: "Montserrat", sans-serif;
@@ -70,4 +72,17 @@ body {
 .btn-logout:active {
   background-color: $dark-red !important;
   border: 1px solid $dark-red !important;
+}
+.btn-edit {
+  padding: 2.5px 35px !important;
+  height: 30px;
+}
+
+.text-success {
+  color: $success-color !important;
+  font-weight: 500;
+}
+.text-danger {
+  color: $danger-color !important;
+  font-weight: 500;
 }

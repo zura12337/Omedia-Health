@@ -75,7 +75,7 @@ class WeightForm extends Form {
         <h1 className="mt-5">Add Weight</h1>
         {this.renderInput("date", "Enter Date:", "date")}
         {this.renderInput("weight", "Weight:", "number")}
-        {this.renderButton("Add")}
+        {this.renderButton("Submit")}
       </>
     );
   }

@@ -16,6 +16,8 @@ import MealForm from "./components/mealForm";
 import Meal from "./components/meal";
 import ActivityForm from "./components/activityForm";
 import Activity from "./components/activity";
+import MealDetailsTable from "./components/mealDetailsTable";
+import ActivityDetailsTable from "./components/activityDetailsTable";
 
 class App extends Component {
   state = {};
@@ -32,8 +34,16 @@ class App extends Component {
             <Route path="/profile" component={Profile} />
             <ProtectedRoute path="/weight/:id" component={WeightForm} />
             <Route path="/weight" component={Weight} />
+            <ProtectedRoute
+              path="/meal/details/:date"
+              component={MealDetailsTable}
+            />
             <ProtectedRoute path="/meal/:id" component={MealForm} />
             <Route path="/meal" component={Meal} />
+            <ProtectedRoute
+              path="/activity/details/:date"
+              component={ActivityDetailsTable}
+            />
             <ProtectedRoute path="/activity/:id" component={ActivityForm} />
             <Route path="/activity" component={Activity} />
             <Route path="/not-found" component={NotFound} />

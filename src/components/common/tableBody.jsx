@@ -4,8 +4,6 @@ import authService from "../../services/authService";
 
 class TableBody extends Component {
   renderCell = (item, column) => {
-    console.log(column.content);
-
     if (column.content) return column.content(item);
 
     return _.get(item, column.path);
@@ -40,7 +38,8 @@ class TableBody extends Component {
                   ))}
                 </tr>
               )
-            ) : dimension === "mealCalories" ? (
+            ) : dimension === "allMealCalories" ||
+              dimension === "mealCalories" ? (
               item[dimension] <= parseInt(user[name]) ? (
                 <tr key={this.generateKey(item, columns)}>
                   {columns.map((column) => (

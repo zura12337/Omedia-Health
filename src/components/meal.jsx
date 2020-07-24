@@ -9,8 +9,30 @@ class Meal extends Component {
     data: [],
   };
   componentDidMount() {
-    const meal = mealService();
-    this.setState({ data: meal });
+    let meal = mealService();
+    let dates = [];
+    let result = [];
+    meal ? meal.map((item) => dates.push(item.date)) : (meal = []);
+    dates = dates.filter((v, i) => dates.indexOf(v) === i);
+
+    dates.forEach((date) => {
+      result.push({ date });
+    });
+
+    result.forEach((item) => {
+      item.allMeal = new Array();
+      for (var i = 0; i < meal.length; i++) {
+        if (meal[i].date === item.date) {
+          item.allMeal.push(meal[i].mealCalories);
+        }
+      }
+      item.allMealCalories = item.allMeal.reduce(
+        (a, b) => parseInt(a) + parseInt(b),
+        0
+      );
+    });
+
+    this.setState({ data: result });
   }
 
   doEdit = (meal) => {

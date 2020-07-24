@@ -78,7 +78,7 @@ class MealForm extends Form {
         {this.renderInput("name", "Name:", "text")}
         {this.renderInput("date", "Enter Date:", "date")}
         {this.renderInput("mealCalories", "Calories:", "number")}
-        {this.renderButton("Add")}
+        {this.renderButton("Submit")}
       </>
     );
   }

@@ -24,17 +24,19 @@ class ActivityForm extends Form {
   doSubmit = () => {
     let activity = localStorage.getItem("activity");
     activity = activity ? JSON.parse(activity) : [];
+    this.state.data.distance = this.state.data.distance + " Km";
     this.state.data.id = activity.length;
 
     const activityId = this.props.match.params.id;
     if (activityId === "add") {
       activity.push(this.state.data);
+      let distance = parseInt(this.state.data.distance.slice(0, -2));
       if (this.state.data === "Running") {
-        this.state.data.activityCalories = this.state.data.distance * 140;
+        this.state.data.activityCalories = distance * 140;
       } else if (this.state.data === "Hiking") {
-        this.state.data.activityCalories = this.state.data.distance * 40;
+        this.state.data.activityCalories = distance * 40;
       } else {
-        this.state.data.activityCalories = this.state.data.distance * 300;
+        this.state.data.activityCalories = distance * 300;
       }
       this.state.data.id++;
       localStorage.setItem("activity", JSON.stringify(activity));
@@ -102,7 +104,7 @@ class ActivityForm extends Form {
           this.activityTypes
         )}
         {this.renderInput("date", "Enter Date:", "date")}
-        {this.renderButton("Add")}
+        {this.renderButton("Submit")}
       </>
     );
   }
