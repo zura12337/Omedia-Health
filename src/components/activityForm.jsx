@@ -25,10 +25,10 @@ class ActivityForm extends Form {
     let activity = localStorage.getItem("activity");
     activity = activity ? JSON.parse(activity) : [];
     this.state.data.distance = this.state.data.distance + " Km";
-    this.state.data.id = activity.length;
-
     const activityId = this.props.match.params.id;
+
     if (activityId === "add") {
+      this.state.data.id = activity.length;
       activity.push(this.state.data);
       let distance = parseInt(this.state.data.distance.slice(0, -2));
       if (this.state.data === "Running") {
@@ -72,6 +72,7 @@ class ActivityForm extends Form {
 
       for (var obj in activity) {
         if (parseInt(activityId) === activity[obj].id) {
+          console.log(activity[obj]);
           this.setState({ data: this.mapToViewModel(activity[obj]) });
         }
       }
@@ -85,10 +86,12 @@ class ActivityForm extends Form {
   }
 
   mapToViewModel(activity) {
+    let distance = parseInt(activity.distance.slice(0, -2));
+
     return {
       id: activity.id,
+      distance: distance,
       activityType: activity.activityType,
-      distance: activity.distance,
       date: activity.date,
     };
   }

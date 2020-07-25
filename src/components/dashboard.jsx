@@ -64,9 +64,22 @@ class Dashboard extends Component {
         }
       }
       for (var i = 0; i < activity.length; i++) {
-        if (activity[i].date === item.date) {
-          item.activityCalories = activity[i].activityCalories;
+        item.totalActivity = new Array();
+        item.totalDistance = new Array();
+        for (var i = 0; i < activity.length; i++) {
+          if (activity[i].date === item.date) {
+            item.totalDistance.push(activity[i].distance);
+            item.totalActivity.push(activity[i].activityCalories);
+          }
         }
+        item.totalActivityCalories = item.totalActivity.reduce(
+          (a, b) => parseInt(a) + parseInt(b),
+          0
+        );
+        item.totalDistance = item.totalDistance.reduce(
+          (a, b) => parseInt(a) + parseInt(b),
+          0
+        );
       }
     });
 
@@ -111,10 +124,15 @@ class Dashboard extends Component {
                       <td className="text-danger">{item.allMealCalories}</td>
                     )}
                     {user &&
-                    user.desiredActivityCalories <= item.activityCalories ? (
-                      <td className="text-success">{item.activityCalories}</td>
+                    user.desiredActivityCalories <=
+                      item.totalActivityCalories ? (
+                      <td className="text-success">
+                        {item.totalActivityCalories}
+                      </td>
                     ) : (
-                      <td className="text-danger">{item.activityCalories}</td>
+                      <td className="text-danger">
+                        {item.totalActivityCalories}
+                      </td>
                     )}
                   </tr>
                 ))}

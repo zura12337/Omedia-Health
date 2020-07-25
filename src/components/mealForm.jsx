@@ -18,12 +18,11 @@ class MealForm extends Form {
   doSubmit = () => {
     let meal = localStorage.getItem("meal");
     meal = meal ? JSON.parse(meal) : [];
-    this.state.data.id = meal.length;
     const mealId = this.props.match.params.id;
 
     if (mealId === "add") {
       meal.push(this.state.data);
-
+      this.state.data.id = meal.length;
       this.state.data.id++;
       localStorage.setItem("meal", JSON.stringify(meal));
       this.props.history.push("/meal");

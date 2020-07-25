@@ -54,10 +54,6 @@ class Activity extends Component {
     this.setState({ activityTypes, data: result });
   }
 
-  doEdit = (activity) => {
-    this.props.history.push(`/activity/${activity.id}`);
-  };
-
   getPageData = () => {
     const { data: allActivity, selectedActivity } = this.state;
 

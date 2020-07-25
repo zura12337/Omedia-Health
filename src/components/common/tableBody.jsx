@@ -57,7 +57,7 @@ class TableBody extends Component {
                   ))}
                 </tr>
               )
-            ) : item["activityCalories"] >= parseInt(user[name]) ? (
+            ) : item[dimension] >= parseInt(user[name]) ? (
               <tr key={this.generateKey(item, columns)}>
                 {columns.map((column) => (
                   <td className="text-success" key={item.id}>

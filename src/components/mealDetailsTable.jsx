@@ -36,7 +36,7 @@ class MealDetailsTable extends Component {
   componentDidMount() {
     let meal = mealService();
     const date = this.props.match.params.date;
-    meal = meal.filter((item) => item.date == date);
+    meal ? (meal = meal.filter((item) => item.date == date)) : (meal = []);
     this.setState({ data: meal });
   }
   render() {
