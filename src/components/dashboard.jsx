@@ -109,7 +109,7 @@ class Dashboard extends Component {
             <tbody>
               {result &&
                 result.map((item) => (
-                  <tr scope="row">
+                  <tr key={item.date} scope="row">
                     <th>{item.date}</th>
                     {user &&
                     item.weight &&

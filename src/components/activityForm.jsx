@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "./common/form";
 import Joi from "joi-browser";
+import generateId from "../services/idGeneration";
 
 class ActivityForm extends Form {
   state = {
@@ -9,7 +10,7 @@ class ActivityForm extends Form {
   };
 
   schema = {
-    id: Joi.number(),
+    id: Joi.string(),
     distance: Joi.number().required().label("Distance"),
     date: Joi.date().required().label("Date"),
     activityType: Joi.string().required().label("Activity Type"),
@@ -28,9 +29,9 @@ class ActivityForm extends Form {
     const activityId = this.props.match.params.id;
 
     if (activityId === "add") {
-      this.state.data.id = activity.length;
-      activity.push(this.state.data);
+      this.state.data.id = generateId();
       let distance = parseInt(this.state.data.distance.slice(0, -2));
+      activity.push(this.state.data);
       if (this.state.data === "Running") {
         this.state.data.activityCalories = distance * 140;
       } else if (this.state.data === "Hiking") {
@@ -38,26 +39,25 @@ class ActivityForm extends Form {
       } else {
         this.state.data.activityCalories = distance * 300;
       }
-      this.state.data.id++;
       localStorage.setItem("activity", JSON.stringify(activity));
       this.props.history.push("/activity");
       window.location.reload(false);
     } else {
       for (var i = 0; i < activity.length; i++) {
-        if (activity[i].id === parseInt(activityId)) {
+        if (activity[i].id === activityId) {
           activity[i] = this.state.data;
           break;
         }
       }
-      if (this.state.data === "Running") {
-        this.state.data.activityCalories = this.state.data.distance * 140;
-      } else if (this.state.data === "Hiking") {
-        this.state.data.activityCalories = this.state.data.distance * 40;
+      let distance = parseInt(this.state.data.distance.slice(0, -2));
+      if (this.state.data.activityType === "Running") {
+        this.state.data.activityCalories = distance * 140;
+      } else if (this.state.data.activityType === "Hiking") {
+        this.state.data.activityCalories = distance * 40;
       } else {
-        this.state.data.activityCalories = this.state.data.distance * 300;
+        this.state.data.activityCalories = distance * 300;
       }
       localStorage.setItem("activity", JSON.stringify(activity));
-
       this.props.history.push("/activity");
       window.location.reload(false);
     }
@@ -71,8 +71,7 @@ class ActivityForm extends Form {
       activity = activity ? JSON.parse(activity) : [];
 
       for (var obj in activity) {
-        if (parseInt(activityId) === activity[obj].id) {
-          console.log(activity[obj]);
+        if (activityId === activity[obj].id) {
           this.setState({ data: this.mapToViewModel(activity[obj]) });
         }
       }

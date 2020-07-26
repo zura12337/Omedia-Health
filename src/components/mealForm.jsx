@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "./common/form";
 import Joi from "joi-browser";
+import generateId from "../services/idGeneration";
 
 class MealForm extends Form {
   state = {
@@ -9,7 +10,7 @@ class MealForm extends Form {
   };
 
   schema = {
-    id: Joi.number(),
+    id: Joi.string(),
     name: Joi.string().required(),
     date: Joi.date().required(),
     mealCalories: Joi.number().required(),
@@ -19,17 +20,17 @@ class MealForm extends Form {
     let meal = localStorage.getItem("meal");
     meal = meal ? JSON.parse(meal) : [];
     const mealId = this.props.match.params.id;
+    console.log(mealId);
 
     if (mealId === "add") {
       meal.push(this.state.data);
-      this.state.data.id = meal.length;
-      this.state.data.id++;
+      this.state.data.id = generateId();
       localStorage.setItem("meal", JSON.stringify(meal));
       this.props.history.push("/meal");
       window.location.reload(false);
     } else {
       for (var i = 0; i < meal.length; i++) {
-        if (meal[i].id === parseInt(mealId)) {
+        if (meal[i].id === mealId) {
           meal[i] = this.state.data;
           break;
         }
@@ -48,7 +49,7 @@ class MealForm extends Form {
       meal = meal ? JSON.parse(meal) : [];
 
       for (var obj in meal) {
-        if (parseInt(mealId) === meal[obj].id) {
+        if (mealId === meal[obj].id) {
           this.setState({ data: this.mapToViewModel(meal[obj]) });
         }
       }

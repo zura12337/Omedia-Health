@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import Table from "./common/table";
 import activityService from "../services/activityService";
 import authService from "../services/authService";
+import ListGroup from "./common/listGroup";
 class ActivityDetailsTable extends Component {
+  state = {
+    data: [],
+    activityTypes: [],
+    selectedActivity: null,
+  };
   columns = [
     {
       path: "activityType",
@@ -27,33 +33,67 @@ class ActivityDetailsTable extends Component {
       </button>
     ),
   };
-  state = {};
-
-  componentDidMount() {
-    let activity = activityService();
-    const date = this.props.match.params.date;
-    activity = activity.filter((item) => item.date == date);
-    console.log(activity);
-    this.setState({ data: activity });
-  }
-  handleEdit = (activity) => {
-    this.props.history.push(`/activity/${activity.id}`);
-  };
   constructor() {
     super();
     const user = authService();
     if (user) this.columns.push(this.editColumn);
   }
+
+  componentDidMount() {
+    const activityTypes = [
+      { name: "All item", id: 0 },
+      { name: "Running", id: 1 },
+      { name: "Swimming", id: 2 },
+      { name: "Hiking", id: 3 },
+    ];
+    let activity = activityService();
+    const date = this.props.match.params.date;
+    activity ? activity.filter((item) => item.date == date) : (activity = []);
+    this.setState({ activityTypes, data: activity });
+  }
+
+  handleEdit = (activity) => {
+    this.props.history.push(`/activity/${activity.id}`);
+  };
+
+  handleActivitySelect = (activity) => {
+    this.setState({ selectedActivity: activity });
+  };
+
+  getPageData = () => {
+    const { data: allActivity, selectedActivity } = this.state;
+
+    let filtered = allActivity;
+    if (selectedActivity && selectedActivity.id && allActivity) {
+      filtered = allActivity.filter(
+        (a) => a.activityType === selectedActivity.name
+      );
+      console.log(filtered);
+    }
+    return { data: filtered };
+  };
+
   render() {
+    const { data } = this.getPageData();
+
     return (
-      <>
-        <Table
-          columns={this.columns}
-          data={this.state.data}
-          name="desiredActivityCalories"
-          dimension="activityCalories"
-        />
-      </>
+      <div className="row">
+        <div className="col-3 mt-5">
+          <ListGroup
+            items={this.state.activityTypes}
+            selectedItem={this.state.selectedActivity}
+            onItemSelect={this.handleActivitySelect}
+          />
+        </div>
+        <div className="col mt-4">
+          <Table
+            columns={this.columns}
+            data={data}
+            name="desiredActivityCalories"
+            dimension="activityCalories"
+          />
+        </div>
+      </div>
     );
   }
 }

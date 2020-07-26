@@ -22,9 +22,12 @@ class TableBody extends Component {
           data.map((item) =>
             dimension === "weight" ? (
               item[dimension].slice(0, -2) <= parseInt(user[name]) ? (
-                <tr key={this.generateKey(item, columns)}>
+                <tr key={item.id}>
                   {columns.map((column) => (
-                    <td className="text-success" key={item.id}>
+                    <td
+                      className="text-success"
+                      key={this.generateKey(item, column)}
+                    >
                       {this.renderCell(item, column)}
                     </td>
                   ))}
@@ -32,7 +35,10 @@ class TableBody extends Component {
               ) : (
                 <tr key={item.id}>
                   {columns.map((column) => (
-                    <td className="text-danger" key={item.id}>
+                    <td
+                      className="text-danger"
+                      key={this.generateKey(item, column)}
+                    >
                       {this.renderCell(item, column)}
                     </td>
                   ))}
@@ -41,9 +47,12 @@ class TableBody extends Component {
             ) : dimension === "allMealCalories" ||
               dimension === "mealCalories" ? (
               item[dimension] <= parseInt(user[name]) ? (
-                <tr key={this.generateKey(item, columns)}>
+                <tr key={item.id}>
                   {columns.map((column) => (
-                    <td className="text-success" key={item.id}>
+                    <td
+                      className="text-success"
+                      key={this.generateKey(item, column)}
+                    >
                       {this.renderCell(item, column)}
                     </td>
                   ))}
@@ -51,16 +60,22 @@ class TableBody extends Component {
               ) : (
                 <tr key={item.id}>
                   {columns.map((column) => (
-                    <td className="text-danger" key={item.id}>
+                    <td
+                      className="text-danger"
+                      key={this.generateKey(item, column)}
+                    >
                       {this.renderCell(item, column)}
                     </td>
                   ))}
                 </tr>
               )
             ) : item[dimension] >= parseInt(user[name]) ? (
-              <tr key={this.generateKey(item, columns)}>
+              <tr key={item.date}>
                 {columns.map((column) => (
-                  <td className="text-success" key={item.id}>
+                  <td
+                    className="text-success"
+                    key={this.generateKey(item, column)}
+                  >
                     {this.renderCell(item, column)}
                   </td>
                 ))}
@@ -68,7 +83,10 @@ class TableBody extends Component {
             ) : (
               <tr key={item.id}>
                 {columns.map((column) => (
-                  <td className="text-danger" key={item.id}>
+                  <td
+                    className="text-danger"
+                    key={this.generateKey(item, column)}
+                  >
                     {this.renderCell(item, column)}
                   </td>
                 ))}

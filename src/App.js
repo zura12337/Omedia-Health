@@ -49,6 +49,7 @@ class App extends Component {
             <Route path="/not-found" component={NotFound} />
             <Route path="/logout" component={Logout} />
             <Redirect from="/" exact to="/dashboard" />
+            <Redirect from="/Omedia-Health" exact to="dashboard" />
             <Redirect to="/not-found" />
           </Switch>
         </div>

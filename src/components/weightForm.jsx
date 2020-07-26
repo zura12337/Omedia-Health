@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "./common/form";
 import Joi from "joi-browser";
+import generateId from "../services/idGeneration";
 
 class WeightForm extends Form {
   state = {
@@ -9,7 +10,7 @@ class WeightForm extends Form {
   };
 
   schema = {
-    id: Joi.number(),
+    id: Joi.string(),
     date: Joi.date().required().label("Date"),
     weight: Joi.number().required().label("Weight"),
   };
@@ -19,16 +20,18 @@ class WeightForm extends Form {
     weight = weight ? JSON.parse(weight) : [];
     this.state.data.weight = this.state.data.weight + " Kg";
     const weightId = this.props.match.params.id;
+    console.log(weightId, this.state.data.weight);
     if (weightId == "add") {
       this.state.data.id = weight.length;
       weight.push(this.state.data);
-      this.state.data.id++;
+      this.state.data.id = generateId();
+      console.log(this.state.data.id);
       localStorage.setItem("weight", JSON.stringify(weight));
       this.props.history.push("/weight");
       window.location.reload(false);
     } else {
       for (var i = 0; i < weight.length; i++) {
-        if (parseInt(weightId) === weight[i].id) {
+        if (weightId === weight[i].id) {
           weight[i] = this.state.data;
           break;
         }
@@ -47,7 +50,7 @@ class WeightForm extends Form {
       weight = weight ? JSON.parse(weight) : [];
 
       for (var obj in weight) {
-        if (parseInt(weightId) === weight[obj].id) {
+        if (weightId === weight[obj].id) {
           this.setState({ data: this.mapToViewModel(weight[obj]) });
         }
       }
@@ -65,7 +68,7 @@ class WeightForm extends Form {
     return {
       id: weight.id,
       date: weight.date,
-      weight: parseInt(onlyWeight),
+      weight: parseFloat(onlyWeight),
     };
   }
 
