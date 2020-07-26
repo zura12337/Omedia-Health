@@ -41,7 +41,6 @@ class ActivityForm extends Form {
       }
       localStorage.setItem("activity", JSON.stringify(activity));
       this.props.history.push("/activity");
-      window.location.reload(false);
     } else {
       for (var i = 0; i < activity.length; i++) {
         if (activity[i].id === activityId) {
@@ -59,7 +58,6 @@ class ActivityForm extends Form {
       }
       localStorage.setItem("activity", JSON.stringify(activity));
       this.props.history.push("/activity");
-      window.location.reload(false);
     }
   };
 

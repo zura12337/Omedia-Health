@@ -27,7 +27,6 @@ class MealForm extends Form {
       this.state.data.id = generateId();
       localStorage.setItem("meal", JSON.stringify(meal));
       this.props.history.push("/meal");
-      window.location.reload(false);
     } else {
       for (var i = 0; i < meal.length; i++) {
         if (meal[i].id === mealId) {
@@ -37,7 +36,6 @@ class MealForm extends Form {
       }
       localStorage.setItem("meal", JSON.stringify(meal));
       this.props.history.push("/meal");
-      window.location.reload(false);
     }
   };
 

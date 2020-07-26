@@ -28,7 +28,6 @@ class WeightForm extends Form {
       console.log(this.state.data.id);
       localStorage.setItem("weight", JSON.stringify(weight));
       this.props.history.push("/weight");
-      window.location.reload(false);
     } else {
       for (var i = 0; i < weight.length; i++) {
         if (weightId === weight[i].id) {
@@ -38,7 +37,6 @@ class WeightForm extends Form {
       }
       localStorage.setItem("weight", JSON.stringify(weight));
       this.props.history.push("/weight");
-      window.location.reload(false);
     }
   };
 
