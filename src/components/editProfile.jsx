@@ -1,12 +1,12 @@
 import React from "react";
 import Form from "./common/form";
-import authService from "../services/authService";
+import Service from "../services/service";
 import Joi from "joi-browser";
 
 class EditProfile extends Form {
   state = { data: {}, errors: {} };
   componentDidMount() {
-    const user = authService();
+    const user = Service("user");
     this.setState({ data: user });
   }
 

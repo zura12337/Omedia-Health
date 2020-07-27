@@ -5,12 +5,12 @@ import generateId from "../services/idGeneration";
 
 class WeightForm extends Form {
   state = {
-    data: { id: 0, date: "" },
+    data: { id: 0, date: {}, weight: "" },
     errors: {},
   };
 
   schema = {
-    id: Joi.string(),
+    id: Joi.any(),
     date: Joi.date().required().label("Date"),
     weight: Joi.number().required().label("Weight"),
   };
@@ -21,6 +21,7 @@ class WeightForm extends Form {
     this.state.data.weight = this.state.data.weight + " Kg";
     const weightId = this.props.match.params.id;
     console.log(weightId, this.state.data.weight);
+    console.log();
     if (weightId == "add") {
       this.state.data.id = weight.length;
       weight.push(this.state.data);

@@ -10,7 +10,7 @@ class MealForm extends Form {
   };
 
   schema = {
-    id: Joi.string(),
+    id: Joi.any(),
     name: Joi.string().required(),
     date: Joi.date().required(),
     mealCalories: Joi.number().required(),

@@ -10,7 +10,7 @@ class ActivityForm extends Form {
   };
 
   schema = {
-    id: Joi.string(),
+    id: Joi.any(),
     distance: Joi.number().required().label("Distance"),
     date: Joi.date().required().label("Date"),
     activityType: Joi.string().required().label("Activity Type"),

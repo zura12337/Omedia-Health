@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import authService from "../services/authService";
+import Service from "../services/service";
 import WeightTable from "./weightTable";
 import { NavLink } from "react-router-dom";
-import weightService from "../services/weightService";
 
 class Weight extends Component {
   state = { data: [] };
 
   componentDidMount() {
-    const data = weightService();
+    const data = Service("weight");
     this.setState({ data });
   }
 
@@ -16,7 +15,7 @@ class Weight extends Component {
     this.props.history.push(`/weight/${weight.id}`);
   };
   render() {
-    const user = authService();
+    const user = Service("user");
     const { data } = this.state;
     return (
       <div className="col">

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import ActivityTable from "./activityTable";
 import { NavLink } from "react-router-dom";
-import authService from "../services/authService";
-import activityService from "../services/activityService";
+import Service from "../services/service";
 
 class Activity extends Component {
   state = {
@@ -10,7 +9,7 @@ class Activity extends Component {
   };
 
   componentDidMount() {
-    let activity = activityService();
+    let activity = Service("activity");
     let dates = [];
     let result = [];
     activity ? activity.map((item) => dates.push(item.date)) : (activity = []);
@@ -41,7 +40,7 @@ class Activity extends Component {
   }
 
   render() {
-    const user = authService();
+    const user = Service("user");
     const { data } = this.state;
     return (
       <div className="row">

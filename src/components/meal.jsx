@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import mealService from "../services/mealService";
-import authService from "../services/authService";
+import Service from "../services/service";
 import MealTable from "./mealTable";
 import { NavLink } from "react-router-dom";
 
@@ -9,7 +8,7 @@ class Meal extends Component {
     data: [],
   };
   componentDidMount() {
-    let meal = mealService();
+    let meal = Service("meal");
     let dates = [];
     let result = [];
     meal ? meal.map((item) => dates.push(item.date)) : (meal = []);
@@ -39,7 +38,7 @@ class Meal extends Component {
     this.props.history.push(`/meal/${meal.id}`);
   };
   render() {
-    const user = authService();
+    const user = Service("user");
     const { data } = this.state;
     return (
       <div className="col">

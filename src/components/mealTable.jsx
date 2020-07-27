@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Table from "./common/table";
-import authService from "../services/authService";
 import { Link } from "react-router-dom";
 
 class MealTable extends Component {

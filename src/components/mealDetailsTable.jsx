@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Table from "./common/table";
-import mealService from "../services/mealService";
-import authService from "../services/authService";
+import Service from "../services/service";
 class MealDetailsTable extends Component {
   state = { date: {} };
   columns = [
@@ -29,12 +28,12 @@ class MealDetailsTable extends Component {
   };
   constructor() {
     super();
-    const user = authService();
+    const user = Service("user");
     if (user) this.columns.push(this.editColumn);
   }
 
   componentDidMount() {
-    let meal = mealService();
+    let meal = Service("meal");
     const date = this.props.match.params.date;
     meal ? (meal = meal.filter((item) => item.date == date)) : (meal = []);
     this.setState({ data: meal });

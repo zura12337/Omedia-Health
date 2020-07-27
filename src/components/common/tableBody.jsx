@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import authService from "../../services/authService";
+import Service from "../../services/service";
 
 class TableBody extends Component {
   renderCell = (item, column) => {
@@ -15,7 +15,7 @@ class TableBody extends Component {
 
   render() {
     const { data, columns, name, dimension } = this.props;
-    const user = authService();
+    const user = Service("user");
     return (
       <tbody>
         {data &&

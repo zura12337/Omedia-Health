@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Table from "./common/table";
-import activityService from "../services/activityService";
-import authService from "../services/authService";
+import Services from "../services/service";
 import ListGroup from "./common/listGroup";
 class ActivityDetailsTable extends Component {
   state = {
@@ -35,7 +34,7 @@ class ActivityDetailsTable extends Component {
   };
   constructor() {
     super();
-    const user = authService();
+    const user = Services("user");
     if (user) this.columns.push(this.editColumn);
   }
 
@@ -46,7 +45,7 @@ class ActivityDetailsTable extends Component {
       { name: "Swimming", id: 2 },
       { name: "Hiking", id: 3 },
     ];
-    let activity = activityService();
+    let activity = Services("activity");
     const date = this.props.match.params.date;
     activity ? activity.filter((item) => item.date == date) : (activity = []);
     this.setState({ activityTypes, data: activity });

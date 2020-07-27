@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import Table from "./common/table";
-import mealService from "../services/mealService";
-import activityService from "../services/activityService";
-import weightService from "../services/weightService";
-import authService from "../services/authService";
+import Services from "../services/service";
 import _ from "lodash";
 
 class Dashboard extends Component {
@@ -26,9 +23,9 @@ class Dashboard extends Component {
   };
 
   componentDidMount() {
-    let meal = mealService();
-    let activity = activityService();
-    let weight = weightService();
+    let meal = Services("meal");
+    let activity = Services("activity");
+    let weight = Services("weight");
 
     let dates = [];
     meal ? meal.map((item) => dates.push(item.date)) : (meal = []);
@@ -80,11 +77,14 @@ class Dashboard extends Component {
           (a, b) => parseInt(a) + parseInt(b),
           0
         );
+        if (item.totalDistance === 0) {
+          item.totalActivityCalories = null;
+        }
       }
     });
 
     console.log(result);
-    const user = authService();
+    const user = Services("user");
 
     this.setState({ data, dates, result, user });
   }

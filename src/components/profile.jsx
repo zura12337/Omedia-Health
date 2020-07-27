@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import authService from "../services/authService";
+import Service from "../services/service";
 
 class Profile extends Component {
   state = { data: {} };
 
   renderDetail(name, label, comment = "") {
-    const user = authService();
+    const user = Service("user");
     return (
       <p className="ml-5">
         {label}: {user[name]} {comment}

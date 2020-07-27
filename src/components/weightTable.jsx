@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Table from "./common/table";
-import authService from "../services/authService";
+import Service from "../services/service";
 
 class WeightForm extends Component {
   columns = [
@@ -29,7 +29,7 @@ class WeightForm extends Component {
 
   constructor() {
     super();
-    const user = authService();
+    const user = Service("user");
     if (user) this.columns.push(this.editColumn);
   }
 

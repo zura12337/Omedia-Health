@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import authService from "../services/authService";
+import Service from "../services/service";
 
 const NavBar = () => {
-  const user = authService();
+  const user = Service("user");
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <button
