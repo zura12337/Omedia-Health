@@ -2,7 +2,7 @@ import { Component } from "react";
 class Logout extends Component {
   componentDidMount() {
     localStorage.clear();
-    window.location = "/login";
+    window.location = "/dashboard";
   }
   render() {
     return null;

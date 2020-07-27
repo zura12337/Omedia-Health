@@ -8,6 +8,8 @@ class RegisterForm extends Form {
   doSubmit = () => {
     localStorage.setItem("user", JSON.stringify(this.state.data));
     this.props.history.push("/dashboard");
+    window.location.reload(false);
+
   };
 
   schema = {
