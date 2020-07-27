@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a5a0b16d84a71575c89189f0378236eb",
+    "revision": "60c8f5d3bbcd2542d4bd925adb19e3dd",
     "url": "/Omedia-Health/index.html"
   },
   {
-    "revision": "15fea49061d11c2a6257",
+    "revision": "c53087895156cfda9266",
     "url": "/Omedia-Health/static/css/main.7ea955c5.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Omedia-Health/static/js/2.cd667e8a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "15fea49061d11c2a6257",
-    "url": "/Omedia-Health/static/js/main.8b20302b.chunk.js"
+    "revision": "c53087895156cfda9266",
+    "url": "/Omedia-Health/static/js/main.2875c3ff.chunk.js"
   },
   {
     "revision": "49093578baa5fe2fd762",

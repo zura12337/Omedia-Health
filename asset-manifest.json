@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Omedia-Health/static/css/main.7ea955c5.chunk.css",
-    "main.js": "/Omedia-Health/static/js/main.8b20302b.chunk.js",
-    "main.js.map": "/Omedia-Health/static/js/main.8b20302b.chunk.js.map",
+    "main.js": "/Omedia-Health/static/js/main.2875c3ff.chunk.js",
+    "main.js.map": "/Omedia-Health/static/js/main.2875c3ff.chunk.js.map",
     "runtime-main.js": "/Omedia-Health/static/js/runtime-main.5c21cccb.js",
     "runtime-main.js.map": "/Omedia-Health/static/js/runtime-main.5c21cccb.js.map",
     "static/js/2.cd667e8a.chunk.js": "/Omedia-Health/static/js/2.cd667e8a.chunk.js",
     "static/js/2.cd667e8a.chunk.js.map": "/Omedia-Health/static/js/2.cd667e8a.chunk.js.map",
     "index.html": "/Omedia-Health/index.html",
-    "precache-manifest.e1ba94e713eccb6fe6d790fa2a247f9e.js": "/Omedia-Health/precache-manifest.e1ba94e713eccb6fe6d790fa2a247f9e.js",
+    "precache-manifest.73a1da1d8b5c4d9f9afaeddf62f04e63.js": "/Omedia-Health/precache-manifest.73a1da1d8b5c4d9f9afaeddf62f04e63.js",
     "service-worker.js": "/Omedia-Health/service-worker.js",
     "static/css/main.7ea955c5.chunk.css.map": "/Omedia-Health/static/css/main.7ea955c5.chunk.css.map",
     "static/js/2.cd667e8a.chunk.js.LICENSE.txt": "/Omedia-Health/static/js/2.cd667e8a.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.5c21cccb.js",
     "static/js/2.cd667e8a.chunk.js",
     "static/css/main.7ea955c5.chunk.css",
-    "static/js/main.8b20302b.chunk.js"
+    "static/js/main.2875c3ff.chunk.js"
   ]
 }
