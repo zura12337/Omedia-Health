@@ -7,9 +7,8 @@ class RegisterForm extends Form {
 
   doSubmit = () => {
     localStorage.setItem("user", JSON.stringify(this.state.data));
-    this.props.history.push("/dashboard");
+    this.props.history.push("/Omedia-Health");
     window.location.reload(false);
-
   };
 
   schema = {
