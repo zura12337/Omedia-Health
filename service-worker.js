@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Omedia-Health/precache-manifest.3b1a358eb1f5403aef274bc91334c438.js"
+  "/Omedia-Health/precache-manifest.91b970eff02e8cefab80889ad5bc0296.js"
 );
 
 self.addEventListener('message', (event) => {
