@@ -1,5 +1,6 @@
 
 Registration (Separate Page)
+
 Fields: name, email, password, desired weight, desired meal calories per day, desired activity calories per day
 Profile (Separate Page)
 Fields: name, email, password, desired weight, desired meal calories per day, desired activity calories per day
